@@ -1,0 +1,4 @@
+[2016-3-6 21:18:5.836] [Log] [Lucy]: This is log!
+[2016-3-6 21:18:6.344] [Warn] [Lucy]: This is warn!
+[2016-3-6 21:18:6.848] [Error] [Lucy]: This is error!
+[2016-3-6 21:18:7.365] [Info] [Lucy]: This is info!

@@ -1,0 +1,59 @@
+<!--
+ * @File: index.html
+ * @Description: index
+ *
+ * @Author:  Pury <szwzjx@gmail.com>
+ * @Version: 0.0.1
+ * @Date:    2016-4-6
+ *
+ * Copyright © 2015 - 2016 pury.org.   
+ * All rights reserved.
+ *
+-->
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<meta charset = "utf-8">
+	<title>CLog - Pury</title>
+	<meta name = "author" content = "Pury"/>
+	<meta name = "viewport" content = "width=device-width,user-scalable=no" />
+	<meta name = "keywords" content = "clog,pury,html5,html5party">
+	<meta name = "description" content = "clog">
+</head>
+<body>
+	<input type="text" id = "nick"value="Lucy" onchange="update()" ></input></br></br>
+	<button onclick="on_log()">Log</button></br></br>
+	<button onclick="on_warn()">Warn</button></br></br>
+	<button onclick="on_error()">Error</button></br></br>
+	<button onclick="on_info()">Info</button></br></br>
+	<script type="text/javascript" src="../src/client/CLog.js"></script> 
+	<script type="text/javascript">
+		function update()
+		{
+			CLog.mNickName = document.getElementById("nick").value;
+		}
+
+		update();
+
+		function on_log()
+		{
+			CLog.Log.l("This is log!");	
+		}
+
+		function on_warn()
+		{
+			CLog.Log.w("This is warn!");	
+		}
+
+		function on_error()
+		{
+			CLog.Log.e("This is error!");	
+		}
+
+		function on_info()
+		{
+			CLog.Log.i("This is info!");	
+		}
+	</script>
+</body>
+<html>

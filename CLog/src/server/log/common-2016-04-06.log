@@ -1,0 +1,12 @@
+[2016-3-6 21:18:5.836] [Log] [Lucy]: This is log!
+[2016-3-6 21:18:6.344] [Warn] [Lucy]: This is warn!
+[2016-3-6 21:18:6.848] [Error] [Lucy]: This is error!
+[2016-3-6 21:18:7.365] [Info] [Lucy]: This is info!
+[2016-3-6 21:18:17.435] [Log] [Tom]: This is log!
+[2016-3-6 21:18:18.462] [Warn] [Tom]: This is warn!
+[2016-3-6 21:18:19.131] [Error] [Tom]: This is error!
+[2016-3-6 21:18:19.825] [Info] [Tom]: This is info!
+[2016-3-6 21:18:29.686] [Log] [Bob]: This is log!
+[2016-3-6 21:18:30.834] [Error] [Bob]: This is error!
+[2016-3-6 21:18:31.585] [Warn] [Bob]: This is warn!
+[2016-3-6 21:18:32.265] [Info] [Bob]: This is info!
