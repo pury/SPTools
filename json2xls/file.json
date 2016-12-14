@@ -1,0 +1,7 @@
+[
+{"id": 1001, "name": "tom", "level": 23, "brief": "I am tom"},	
+{"id": 1002, "name": "pub", "level": 33, "brief": "I am pub"},	
+{"id": 1003, "name": "acu", "level": 43, "brief": "I am acu"},	
+{"id": 1004, "name": "foo", "level": 23, "brief": "I am foo"},	
+{"id": 1005, "name": "coo", "level": 54, "brief": "I am coo"}
+]
