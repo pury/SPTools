@@ -1,0 +1,11 @@
+"groups":
+[
+	{
+		"keys":"hero_y_png,hero_r_png,flame_png,flame_json",
+		"name":"preload"
+	},
+    {
+		"keys":"1001_attack_json,1001_attack_png,1001_idle_json,1001_idle_png,1001_walk_json,1001_walk_png,1001_hurt_json,1001_hurt_png",
+		"name":"1001"
+	}
+]
