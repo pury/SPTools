@@ -1,3 +1,15 @@
+/**
+ * @File: go.js
+ * @Brief: json2xls
+ * 
+ * @Author: Pury
+ * @Version: 0.0.1
+ * @Date: 2016-12-14
+ *
+ * Copyright (c) pury.org.
+ * All rights reserved.
+ */
+
 var fs = require("fs");
 var json2xls = require('json2xls');
 var args = process.argv.splice(2);
