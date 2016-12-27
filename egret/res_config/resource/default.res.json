@@ -1,31 +1,29 @@
 {
-"groups":
-[
-	{
-		"keys":"hero_y_png,hero_r_png,flame_png,flame_json",
-		"name":"preload"
-	},
-    {
-		"keys":"1001_attack_json,1001_attack_png,1001_idle_json,1001_idle_png,1001_walk_json,1001_walk_png,1001_hurt_json,1001_hurt_png",
-		"name":"1001"
-	}
-],
-"resources":[
-{
-    "url": "assets/Button/button_down.png",
-    "type": "image",
-    "name": "button_down_png"
-},{
-    "url": "assets/Button/button_up.png",
-    "type": "image",
-    "name": "button_up_png"
-},{
-    "url": "assets/bg.jpg",
-    "type": "image",
-    "name": "bg_jpg"
-},{
-    "url": "res/flame.json",
-    "type": "json",
-    "name": "flame_json"
-}]
+    "resources": [
+        {
+            "url": "assets/bg.jpg", 
+            "type": "image", 
+            "name": "bg_jpg"
+        }, 
+        {
+            "url": "assets/Button/button_down.png", 
+            "type": "image", 
+            "name": "button_down_png"
+        }, 
+        {
+            "url": "assets/Button/button_up.png", 
+            "type": "image", 
+            "name": "button_up_png"
+        }
+    ], 
+    "groups": [
+        {
+            "keys": "hero_y_png,hero_r_png,flame_png,flame_json", 
+            "name": "preload"
+        }, 
+        {
+            "keys": "1001_attack_json,1001_attack_png,1001_idle_json,1001_idle_png,1001_walk_json,1001_walk_png,1001_hurt_json,1001_hurt_png", 
+            "name": "1001"
+        }
+    ]
 }
