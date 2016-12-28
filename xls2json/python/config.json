@@ -1,0 +1,290 @@
+{
+    "BagConfig": {
+        "1": {
+            "tCost": 3, 
+            "tIndex": 1
+        }, 
+        "2": {
+            "tCost": 3, 
+            "tIndex": 2
+        }, 
+        "3": {
+            "tCost": 4, 
+            "tIndex": 3
+        }, 
+        "4": {
+            "tCost": 4, 
+            "tIndex": 4
+        }, 
+        "5": {
+            "tCost": 5, 
+            "tIndex": 5
+        }, 
+        "6": {
+            "tCost": 5, 
+            "tIndex": 6
+        }, 
+        "7": {
+            "tCost": 6, 
+            "tIndex": 7
+        }, 
+        "8": {
+            "tCost": 6, 
+            "tIndex": 8
+        }, 
+        "9": {
+            "tCost": 7, 
+            "tIndex": 9
+        }, 
+        "10": {
+            "tCost": 7, 
+            "tIndex": 10
+        }, 
+        "11": {
+            "tCost": 8, 
+            "tIndex": 11
+        }, 
+        "12": {
+            "tCost": 8, 
+            "tIndex": 12
+        }, 
+        "13": {
+            "tCost": 9, 
+            "tIndex": 13
+        }, 
+        "14": {
+            "tCost": 9, 
+            "tIndex": 14
+        }, 
+        "15": {
+            "tCost": 10, 
+            "tIndex": 15
+        }, 
+        "16": {
+            "tCost": 10, 
+            "tIndex": 16
+        }, 
+        "17": {
+            "tCost": 11, 
+            "tIndex": 17
+        }, 
+        "18": {
+            "tCost": 11, 
+            "tIndex": 18
+        }, 
+        "19": {
+            "tCost": 12, 
+            "tIndex": 19
+        }, 
+        "20": {
+            "tCost": 12, 
+            "tIndex": 20
+        }, 
+        "21": {
+            "tCost": 13, 
+            "tIndex": 21
+        }, 
+        "22": {
+            "tCost": 13, 
+            "tIndex": 22
+        }, 
+        "23": {
+            "tCost": 14, 
+            "tIndex": 23
+        }, 
+        "24": {
+            "tCost": 14, 
+            "tIndex": 24
+        }, 
+        "25": {
+            "tCost": 15, 
+            "tIndex": 25
+        }, 
+        "26": {
+            "tCost": 15, 
+            "tIndex": 26
+        }, 
+        "27": {
+            "tCost": 16, 
+            "tIndex": 27
+        }, 
+        "28": {
+            "tCost": 16, 
+            "tIndex": 28
+        }, 
+        "29": {
+            "tCost": 17, 
+            "tIndex": 29
+        }, 
+        "30": {
+            "tCost": 17, 
+            "tIndex": 30
+        }, 
+        "31": {
+            "tCost": 18, 
+            "tIndex": 31
+        }, 
+        "32": {
+            "tCost": 18, 
+            "tIndex": 32
+        }, 
+        "33": {
+            "tCost": 19, 
+            "tIndex": 33
+        }, 
+        "34": {
+            "tCost": 19, 
+            "tIndex": 34
+        }, 
+        "35": {
+            "tCost": 20, 
+            "tIndex": 35
+        }, 
+        "36": {
+            "tCost": 20, 
+            "tIndex": 36
+        }, 
+        "37": {
+            "tCost": 21, 
+            "tIndex": 37
+        }, 
+        "38": {
+            "tCost": 21, 
+            "tIndex": 38
+        }, 
+        "39": {
+            "tCost": 22, 
+            "tIndex": 39
+        }, 
+        "40": {
+            "tCost": 22, 
+            "tIndex": 40
+        }, 
+        "41": {
+            "tCost": 23, 
+            "tIndex": 41
+        }, 
+        "42": {
+            "tCost": 23, 
+            "tIndex": 42
+        }, 
+        "43": {
+            "tCost": 24, 
+            "tIndex": 43
+        }, 
+        "44": {
+            "tCost": 24, 
+            "tIndex": 44
+        }, 
+        "45": {
+            "tCost": 25, 
+            "tIndex": 45
+        }, 
+        "46": {
+            "tCost": 25, 
+            "tIndex": 46
+        }, 
+        "47": {
+            "tCost": 26, 
+            "tIndex": 47
+        }, 
+        "48": {
+            "tCost": 26, 
+            "tIndex": 48
+        }, 
+        "49": {
+            "tCost": 27, 
+            "tIndex": 49
+        }, 
+        "50": {
+            "tCost": 27, 
+            "tIndex": 50
+        }, 
+        "51": {
+            "tCost": 28, 
+            "tIndex": 51
+        }, 
+        "52": {
+            "tCost": 28, 
+            "tIndex": 52
+        }, 
+        "53": {
+            "tCost": 29, 
+            "tIndex": 53
+        }, 
+        "54": {
+            "tCost": 29, 
+            "tIndex": 54
+        }, 
+        "55": {
+            "tCost": 30, 
+            "tIndex": 55
+        }, 
+        "56": {
+            "tCost": 30, 
+            "tIndex": 56
+        }, 
+        "57": {
+            "tCost": 31, 
+            "tIndex": 57
+        }, 
+        "58": {
+            "tCost": 31, 
+            "tIndex": 58
+        }, 
+        "59": {
+            "tCost": 32, 
+            "tIndex": 59
+        }, 
+        "60": {
+            "tCost": 32, 
+            "tIndex": 60
+        }, 
+        "61": {
+            "tCost": 33, 
+            "tIndex": 61
+        }, 
+        "62": {
+            "tCost": 33, 
+            "tIndex": 62
+        }, 
+        "63": {
+            "tCost": 34, 
+            "tIndex": 63
+        }, 
+        "64": {
+            "tCost": 34, 
+            "tIndex": 64
+        }, 
+        "65": {
+            "tCost": 35, 
+            "tIndex": 65
+        }, 
+        "66": {
+            "tCost": 35, 
+            "tIndex": 66
+        }, 
+        "67": {
+            "tCost": 36, 
+            "tIndex": 67
+        }
+    }, 
+    "RingConfig": {
+        "1": {
+            "tName": "coin", 
+            "tId": 1, 
+            "tAttr3": 13, 
+            "tAttr2": 3, 
+            "tAttr1": 9, 
+            "tAttr4": 10
+        }, 
+        "2": {
+            "tName": "gold", 
+            "tId": 2, 
+            "tAttr3": 4, 
+            "tAttr2": 12, 
+            "tAttr1": 1, 
+            "tAttr4": 5
+        }
+    }
+}

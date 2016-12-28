@@ -1,0 +1,16 @@
+{
+  "name": "trunk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "dependencies": {
+    "node-xlsx": "^0.7.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "pury <szwzjx@gmail.com>",
+  "license": "MIT"
+}
