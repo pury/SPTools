@@ -1,0 +1,376 @@
+<html><head><title>Polygon</title>
+
+</head><body><div>
+    <canvas id="canvas" width="500" height="400" style="border: solid black 1px; cursor: default;"></canvas>
+</div>
+<div>
+    <input type="button" value="clear" onclick="demo.clear();">
+    <input type="button" value="close path" onclick="demo.closePath();">
+    <input type="button" value="triangulate" onclick="demo.triangulate();">
+    <input type="button" value="load path" onclick="demo.loadPath();">
+    <input type="button" value="save path" onclick="demo.savePath();">
+</div>
+<br/>
+<textarea id="txtArea" style="margin: 0px; width: 500px; height: 77px;"></textarea>
+<br/>
+
+<script type="text/javascript" src="MathUtil.js"></script>
+<script type="text/javascript">
+
+var demo = new Demo();
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+
+function Demo() {
+    var vertices = [];
+    var closed = false;
+    var movingPoint = null;
+    var triangles = [];
+
+    this.render = function() {
+        // if (movingPoint != null) {
+            context.clearRect(0, 0, Number(canvas.width), Number(canvas.height));
+        // }
+        if (vertices.length == 0) {
+            return;
+        }
+        var first = vertices[0];
+        context.moveTo(first.x, first.y);
+        first.draw(context);
+        first.drawId(context);
+        for (var i = 1; i < vertices.length; i++) {
+            vertices[i].draw(context);
+            vertices[i].drawId(context);
+            context.moveTo(vertices[i-1].x, vertices[i-1].y);
+            context.lineTo(vertices[i].x, vertices[i].y);
+            context.strokeStyle = "#ff0000";
+            context.stroke();
+        }
+        if (closed) {
+            context.lineTo(first.x, first.y);
+        } else {
+            if (movingPoint != null) {
+                context.lineTo(movingPoint.x, movingPoint.y);
+            }
+        }
+        context.strokeStyle = "#00ff00";
+        context.stroke();
+
+        for (var i = 0; i < triangles.length; i++) {
+            triangles[i].draw(context);
+        }
+    }
+
+    this.onMouseMove = function(x, y) {
+        if (vertices.length == 0) {
+            return;
+        }
+        movingPoint = new Vertex(x, y);
+    }
+
+    this.addAt = function(x, y) {
+        if (closed) {
+            this.clear();
+        }
+        movingPoint = null;
+        var p = new Vertex(x, y);
+        p.id = vertices.length;
+        vertices.push(p);
+    }
+
+    this.savePath = function() {
+        document.getElementById("txtArea").value = vertices.toString();
+    }
+
+    this.loadPath = function() {
+        vertices = [];
+        var txt = document.getElementById("txtArea").value;
+        if (txt == null || txt.length < 12) {
+            return;
+        }
+        var points = txt.split(",");
+        for (var i=0; i<points.length; i++) {
+            var p = new Vertex(0, 0);
+            p.init(points[i]);
+            p.id = vertices.length;
+            vertices.push(p);
+        }
+        this.closePath();
+    }
+
+    this.clear = function() {
+        vertices = [];
+        triangles = [];
+        movingPoint = null;
+        closed = false;
+        // document.getElementById("txtArea").value = "";
+        context.clearRect(0, 0, Number(canvas.width), Number(canvas.height));
+    }
+
+    this.triangulate = function() {
+        triangles = [];
+        getTriangles4ConcavPolygon(vertices, triangles);
+        console.log(triangles.toString());
+    }
+
+    this.closePath = function() {
+        if (vertices.length < 3) {
+            console.log("invaild input for triangulation.");
+            return;
+        }
+        closed = true;
+        // this.render();
+    }
+}
+
+var stepTime = 50;
+var interval;
+function step() {
+    demo.render();
+}
+
+//凸多边形
+function getTriangles4ConvexPolygon(vertices, output) {
+    if (vertices == null || vertices.length < 3) {
+        console.log("invaild input parameter");
+        return;
+    }
+    if (vertices.length == 3) {
+        output.push(new Triangle(vertices[0], vertices[1], vertices[2]));
+        return;
+    }
+    var removed = [];
+    for (var i = 0; i < vertices.length - 2; i += 2) {
+        output.push(new Triangle(vertices[i], vertices[i+1], vertices[i+2]));
+        removed.push(vertices[i+1]);
+    }
+    getTriangles4ConvexPolygon(subtract(vertices, removed), output);
+}
+
+//凹多边形 
+function getTriangles4ConcavPolygon(vertices, output) {
+    var convexPolygons = [];
+    concavToConvex(vertices, convexPolygons);
+    for (var i = 0; i < convexPolygons.length; i++) {
+        getTriangles4ConvexPolygon(convexPolygons[i], output);
+    }
+}
+
+function concavToConvex(vertices, output) {
+    var points = filterOutUselessVertex(vertices);
+    var total = points.length;
+    var isClockwise = isClockwiseSquence(points);
+    var concavPoint = null;
+    var concavIndex = -1;
+    for (var i = 0; i < total; i++) {
+        var v1 = points[i];
+        var v2 = getValidIndex(i+1, total);
+        var p = getValidIndex(i+2, total);
+        var curSide = getPointOnVectorSide(v1, points[v2], points[p]);
+        if (isClockwise && curSide == ON_LEFT_SIDE) {
+            concavPoint = points[v2];
+            concavIndex = v2;
+            break;
+        } else if (!isClockwise && curSide == ON_RIGHT_SIDE) {
+            concavPoint = points[v2];
+            concavIndex = v2;
+            break;
+        }
+    }
+    if (concavPoint != null) {
+        var index = concavIndex;
+        var p2 = getValidIndex(index + 1, total);
+        var p1 = getValidIndex(index - 1, total);
+        var angle = getAngle(points[p1], points[index], points[p2]);
+        var halfAngle = (Math.PI * 2 - angle) / 2;
+        var minAngle = 100;
+        var divideIndex;
+        for (var i = 0; i < total; i++) {
+            if (i == index || i == p1 || i == p2) {
+                continue;
+            }
+            var side = getPointOnVectorSide(points[p1], points[index], points[i]);
+            if ((isClockwise && side == ON_RIGHT_SIDE) ||
+                (!isClockwise && side == ON_LEFT_SIDE) ||
+                side == ON_LINE_OUT) {
+                if (!isCrossWithEdges(points, p1, index, p2, i)) {
+                    var curAngle = getAngle(points[p1], points[index], points[i]);
+                    var delta = Math.abs(curAngle - halfAngle);
+                    if (delta < minAngle) {
+                        minAngle = delta;
+                        divideIndex = i;
+                    }
+                }
+            }
+        }
+        var arr = splitArray(points, index, divideIndex);
+        concavToConvex(arr[0], output);
+        concavToConvex(arr[1], output);
+    } else {
+        output.push(points);
+    }
+}
+
+function filterOutUselessVertex(vertices) {
+    var ret = [];
+    var k, firstK, lastK;
+    for (var i=0; i<vertices.length; i++) {
+        if (i==0) {
+            var last = vertices[vertices.length-1];
+            if (last.x == vertices[0].x) {
+                k = "Infinity";
+            } else {
+                k = (last.y - vertices[0].y) / (last.x - vertices[0].x);
+            }
+            firstK = k;
+            ret.push(last);
+        } else {
+            var curK;
+            if (vertices[i-1].x == vertices[i].x) {
+                curK = "Infinity";
+            } else {
+                curK = (vertices[i-1].y - vertices[i].y) / (vertices[i-1].x - vertices[i].x)
+            }
+            if (k == curK || Math.abs(k - curK) < 0.001) {
+                continue;
+            } else {
+                k = curK;
+            }
+            if (i == vertices.length - 1) {
+                lastK = curK;
+            }
+            ret.push(vertices[i-1]);
+        }
+    }
+    if (firstK == lastK || Math.abs(firstK - lastK) < 0.001) {
+        ret.shift();
+    }
+    return ret;
+}
+
+function splitArray(vertices, index1, index2) {
+    var small = Math.min(index1, index2);
+    var big = Math.max(index1, index2);
+    var total = vertices.length;
+    var v1 = vertices[small];
+    var v2 = vertices[big];
+    var start = small + 1;
+    var numbersBetween = Math.abs(index1 - index2) - 1;
+    var newSeries;
+    var delta = start + numbersBetween - vertices.length;
+    if (delta > 0) {
+        for (var i=0;i<delta;i++) {
+            var item = vertices.shift();
+            vertices.push(item);
+            start--;
+        }
+    }
+    newSeries = vertices.splice(start, numbersBetween);
+    newSeries.push(v2, v1);
+    return [newSeries, vertices];
+}
+
+function isCrossWithEdges(vertices, p1, index, p2, checkingIndex) {
+    var q1 = getValidIndex(checkingIndex - 1, vertices.length);
+    var q2 = getValidIndex(checkingIndex + 1, vertices.length);
+    var needSkip1 = [p1, index, p2];
+    var needSkip2 = [q1, checkingIndex, q2];
+    for (var i = 0; i < vertices.length; i++) {
+        var edgeIndex = (i+1) % vertices.length;
+        if (needSkip1.indexOf(i) >= 0 && needSkip1.indexOf(edgeIndex) >= 0) {
+            continue;
+        }
+        if (needSkip2.indexOf(i) >= 0 && needSkip2.indexOf(edgeIndex) >= 0) {
+            continue;
+        }
+        if (lineSegmentCross(vertices[i], vertices[edgeIndex], vertices[index], vertices[checkingIndex])) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function getValidIndex(index, total) {
+    if (index >= total) {
+        return index % total;
+    }
+    if (index < 0) {
+        return total + index % total;
+    }
+    return index;
+}
+
+function isClockwiseSquence(vertices) {
+    var leftCount = 0;
+    var rightCount = 0;
+    for (var i = 0; i < vertices.length; i++) {
+        var v2Index = getValidIndex(i + 1, vertices.length);
+        var pIndex = getValidIndex(i + 2, vertices.length);
+        var curSide = getPointOnVectorSide(vertices[i], vertices[v2Index], vertices[pIndex]);
+        if (curSide == ON_LEFT_SIDE) {
+            leftCount++;
+        } else {
+            rightCount++;
+        }
+    }
+    if (rightCount > leftCount) {
+        return true;
+    } else if (rightCount < leftCount) {
+        return false;
+    } else {
+        var arr = vertices;
+        arr.pop();
+        return isClockwiseSquence(arr);
+    }
+}
+
+function getTriangles4SelfCrossPolygon(vertices) {
+}
+
+//return arr1 - arr2;
+function subtract(arr1, arr2) {
+    var ret = [];
+    for (var i = 0; i < arr1.length; i++) {
+        var flag = true;
+        for (var j = 0; j < arr2.length; j++) {
+            if (arr1[i].equals(arr2[j])) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            ret.push(arr1[i]);
+        }
+    }
+    return ret;
+}
+
+window.onload = function() {
+    interval = setInterval(step, stepTime);
+
+    document.getElementById("canvas").onclick = function(e) {
+        e = e ? e : window.event;
+        var rect = this.getBoundingClientRect();
+        demo.addAt(e.clientX - rect.left, e.clientY - rect.top);
+        arr = JSON.parse(arr);
+
+
+        for (var ii in arr)
+        {
+            demo.addAt(arr[ii][0], arr[ii][1]);
+        }
+
+
+        console.log("x:", e.clientX, " y:", e.clientY);
+    }
+
+    document.getElementById("canvas").onmousemove = function(e) {
+        e = e ? e : window.event;
+        var rect = this.getBoundingClientRect();
+        demo.onMouseMove(e.clientX - rect.left, e.clientY - rect.top);
+    }
+};
+</script>
+
+</body></html>
+
