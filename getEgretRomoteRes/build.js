@@ -10,9 +10,9 @@ var mkdirp = require('mkdirp');
 //-- 资源配置表名称(当前目录下)
 var resFileName = "default.res.json";   
 //-- 资源根目录路径
-var resUrl = "http://game.ky206.com/resource/";  
+var resUrl = "http://xxx.com/resource/";  
 //-- 下载资源后的保存路径
-var resPath = "D:/ttt/egret4/";
+var resPath = "./resource/";
 
 /*------------------------------------ */
 /*------------------------------------ */

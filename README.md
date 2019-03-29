@@ -1,12 +1,25 @@
 # SPTools
 Some simple and practical tools.
+简单实用的工具集。
 
-### CLog
+## CLog
 
-### egret
+## egret
 
-### json2xls
+python, 批处理egret资源。
 
-### xls2json
+## json2xls
 
-### image2base64data
+json文件转excel文件。
+
+## xls2json
+
+excel文件转json文件。
+
+## image2base64data
+
+图片资源转base64字符串。
+
+## getEgretRomoteRes
+
+一键下载获取egret游戏资源包。
