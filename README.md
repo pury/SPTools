@@ -23,3 +23,7 @@ excel文件转json文件。
 ## getEgretRomoteRes
 
 一键下载获取egret游戏资源包。
+
+## objectPool
+
+对象池。
