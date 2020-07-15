@@ -27,3 +27,7 @@ excel文件转json文件。
 ## objectPool
 
 对象池。
+
+## square2circle
+
+nodejs 批处理裁剪方形图片为圆形。
