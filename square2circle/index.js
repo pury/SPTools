@@ -1,5 +1,12 @@
 /**
+ * @File: index.js
+ * 
+ * @Author: Pury
+ * @Version: 0.0.1
+ * @Date: 2020-7-15
  *
+ * Copyright (c) pury.org.
+ * All rights reserved.
  */
 
 var fs = require( 'fs' ),
