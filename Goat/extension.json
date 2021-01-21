@@ -1,0 +1,34 @@
+{
+	"name": "Goat",
+	"author": [ "Pury" ],
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.30.0"
+	},
+	"ContentHandlers": {
+		"goat": "GoatContentHandler"
+	},
+	"namespaces": [
+		{
+			"id": 467,
+			"constant": "NS_GOAT",
+			"name": "Goat",
+			"subpages": false,
+			"content": true,
+			"defaultcontentmodel": "goat"
+		},
+		{
+			"id": 468,
+			"constant": "NS_GOAT_TALK",
+			"name": "Goat_talk",
+			"subpages": true,
+			"content": false,
+			"defaultcontentmodel": "wikitext"
+		}
+	],
+	"AutoloadClasses": {
+		"GoatContent": "GoatContent.php",
+		"GoatContentHandler": "GoatContentHandler.php"
+	},
+	"manifest_version": 1
+}
