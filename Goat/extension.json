@@ -1,6 +1,6 @@
 {
 	"name": "Goat",
-	"author": [ "Pury" ],
+	"author": [ "" ],
 	"type": "other",
 	"requires": {
 		"MediaWiki": ">= 1.30.0"
@@ -28,7 +28,11 @@
 	],
 	"AutoloadClasses": {
 		"GoatContent": "GoatContent.php",
+		"GoatHooks": "GoatHooks.php",
 		"GoatContentHandler": "GoatContentHandler.php"
+	},
+	"Hooks": {
+		"ContentHandlerDefaultModelFor": "GoatHooks::onContentHandlerDefaultModelFor"
 	},
 	"manifest_version": 1
 }
